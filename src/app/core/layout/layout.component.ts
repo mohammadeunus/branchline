@@ -6,9 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent {
-  sidebarCollapsed = false;
-
-  onSidebarToggle(): void {
-    this.sidebarCollapsed = !this.sidebarCollapsed;
-  }
+  // Layout component without sidebar functionality
 }

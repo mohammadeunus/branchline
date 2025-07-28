@@ -3,34 +3,20 @@
   min-height: 100vh;
   height: 100vh;
   position: relative;
+  justify-content: center;
 }
 
-.main-content {
-  flex: 1;
+.container {
+  width: 90%;
+  max-width: 1400px;
   display: flex;
   flex-direction: column;
-  margin-left: 280px;
-  transition: margin-left 0.3s ease;
   background: transparent;
-
-  &.sidebar-collapsed {
-    margin-left: 80px;
-  }
 }
 
 .content {
   flex: 1;
-  padding: 24px;
+  padding: 24px 0;
   overflow-y: auto;
   background: transparent;
-}
-
-@media (max-width: 768px) {
-  .main-content {
-    margin-left: 0;
-    
-    &.sidebar-collapsed {
-      margin-left: 0;
-    }
-  }
 }
