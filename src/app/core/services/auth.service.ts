@@ -60,8 +60,8 @@ export class AuthService {
   private validateToken(token: string): void {
     // Implement token validation logic
     this.apiService.get('/auth/validate').subscribe({
-      next: (user) => {
-        this.setCurrentUser(user);
+      next: (user: any) => {
+        this.setCurrentUser(user as User);
       },
       error: () => {
         this.logout();

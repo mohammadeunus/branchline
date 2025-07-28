@@ -27,7 +27,7 @@ export class NotificationService {
     const currentNotifications = this.notificationsSubject.value;
     this.notificationsSubject.next([...currentNotifications, newNotification]);
 
-    if (newNotification.duration > 0) {
+    if (newNotification.duration && newNotification.duration > 0) {
       setTimeout(() => {
         this.remove(id);
       }, newNotification.duration);

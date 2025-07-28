@@ -64,14 +64,15 @@
           </td>
           <td *ngIf="actions.length > 0" class="actions-column">
             <div class="action-buttons">
-              <button *ngFor="let action of actions"
-                      *ngIf="isActionVisible(action, item)"
-                      class="action-btn"
-                      (click)="executeAction(action, item)"
-                      [title]="action.label">
-                <span *ngIf="action.icon">{{ action.icon }}</span>
-                <span *ngIf="!action.icon">{{ action.label }}</span>
-              </button>
+              <ng-container *ngFor="let action of actions">
+                <button *ngIf="isActionVisible(action, item)"
+                        class="action-btn"
+                        (click)="executeAction(action, item)"
+                        [title]="action.label">
+                  <span *ngIf="action.icon">{{ action.icon }}</span>
+                  <span *ngIf="!action.icon">{{ action.label }}</span>
+                </button>
+              </ng-container>
             </div>
           </td>
         </tr>
