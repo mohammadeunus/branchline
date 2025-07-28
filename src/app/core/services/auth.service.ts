@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { ApiService } from './api.service';
 
@@ -15,10 +15,19 @@ export interface User {
   providedIn: 'root'
 })
 export class AuthService {
-  private currentUserSubject = new BehaviorSubject<User | null>(null);
+  // Mock user for development
+  private mockUser: User = {
+    id: '1',
+    email: 'admin@example.com',
+    name: 'Admin User',
+    role: 'admin',
+    avatar: 'https://via.placeholder.com/40'
+  };
+
+  private currentUserSubject = new BehaviorSubject<User | null>(this.mockUser);
   public currentUser$ = this.currentUserSubject.asObservable();
 
-  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(true);
   public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
   constructor(
@@ -27,21 +36,18 @@ export class AuthService {
   ) {}
 
   initializeAuth(): void {
-    const token = localStorage.getItem('token');
-    if (token) {
-      this.validateToken(token);
-    }
+    // Always set as authenticated for development
+    this.setCurrentUser(this.mockUser);
   }
 
   login(email: string, password: string): Observable<any> {
-    return this.apiService.post('/auth/login', { email, password });
+    // Mock successful login
+    return of({ user: this.mockUser, token: 'mock-token' });
   }
 
   logout(): void {
-    localStorage.removeItem('token');
-    this.currentUserSubject.next(null);
-    this.isAuthenticatedSubject.next(false);
-    this.router.navigate(['/auth/login']);
+    // For development, just navigate to dashboard instead of login
+    this.router.navigate(['/dashboard']);
   }
 
   setCurrentUser(user: User): void {
@@ -50,22 +56,15 @@ export class AuthService {
   }
 
   getCurrentUser(): User | null {
-    return this.currentUserSubject.value;
+    return this.mockUser;
   }
 
   isAuthenticated(): boolean {
-    return this.isAuthenticatedSubject.value;
+    return true; // Always return true for development
   }
 
   private validateToken(token: string): void {
-    // Implement token validation logic
-    this.apiService.get('/auth/validate').subscribe({
-      next: (user: any) => {
-        this.setCurrentUser(user as User);
-      },
-      error: () => {
-        this.logout();
-      }
-    });
+    // Mock token validation - always succeed
+    this.setCurrentUser(this.mockUser);
   }
 }
