@@ -1,7 +1,8 @@
 .layout-container {
   display: flex;
   min-height: 100vh;
-  background-color: #f8fafc;
+  height: 100vh;
+  position: relative;
 }
 
 .main-content {
@@ -10,6 +11,7 @@
   flex-direction: column;
   margin-left: 280px;
   transition: margin-left 0.3s ease;
+  background: transparent;
 
   &.sidebar-collapsed {
     margin-left: 80px;
@@ -20,6 +22,7 @@
   flex: 1;
   padding: 24px;
   overflow-y: auto;
+  background: transparent;
 }
 
 @media (max-width: 768px) {

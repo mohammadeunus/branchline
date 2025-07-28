@@ -1,4 +1,10 @@
 /* Global Styles */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -10,7 +16,7 @@ body {
   font-size: 14px;
   line-height: 1.5;
   color: #1e293b;
-  background-color: #f8fafc;
+  background: linear-gradient(135deg, #fefce8 0%, #fef3c7 80%, #fde68a 100%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

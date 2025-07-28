@@ -47,10 +47,12 @@
                     [ngClass]="'badge-' + getCellValue(item, column)?.toLowerCase()">
                 {{ getCellValue(item, column) }}
               </span>
-              <img *ngSwitchCase="'avatar'" 
-                   [src]="getCellValue(item, column)" 
-                   [alt]="item.name"
-                   class="avatar">
+              <div *ngSwitchCase="'avatar'" class="cell-avatar">
+                <img [src]="getCellValue(item, column)" 
+                     [alt]="item.name"
+                     class="avatar">
+                <span>{{ item.name }}</span>
+              </div>
               <span *ngSwitchCase="'date'">
                 {{ getCellValue(item, column) | date:'MMM d, yyyy' }}
               </span>

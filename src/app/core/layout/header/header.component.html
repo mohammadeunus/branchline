@@ -1,36 +1,32 @@
 <header class="header">
   <div class="header-left">
-    <button class="menu-toggle" (click)="onToggleSidebar()">
-      <span class="hamburger"></span>
-    </button>
-    
-    <div class="search-container">
-      <input type="text" placeholder="Search..." class="search-input">
-      <span class="search-icon">🔍</span>
+    <div class="logo">
+      <span class="logo-text">Crextio</span>
     </div>
   </div>
 
-  <div class="header-right">
-    <div class="notifications">
-      <button class="notification-btn">
-        <span class="notification-icon">🔔</span>
-        <span class="notification-badge">3</span>
-      </button>
-    </div>
+  <div class="header-center">
+    <nav class="main-nav">
+      <a routerLink="/dashboard" routerLinkActive="active" class="nav-btn">Dashboard</a>
+      <a routerLink="/people" routerLinkActive="active" class="nav-btn">People</a>
+      <a routerLink="/hiring" routerLinkActive="active" class="nav-btn">Hiring</a>
+      <a routerLink="/devices" routerLinkActive="active" class="nav-btn">Devices</a>
+      <a routerLink="/apps" routerLinkActive="active" class="nav-btn">Apps</a>
+      <a routerLink="/salary" routerLinkActive="active" class="nav-btn">Salary</a>
+      <a routerLink="/calendar" routerLinkActive="active" class="nav-btn">Calendar</a>
+      <a routerLink="/reviews" routerLinkActive="active" class="nav-btn">Reviews</a>
+    </nav>
+  </div>
 
-    <div class="user-menu" *ngIf="currentUser$ | async as user">
-      <div class="user-info">
-        <img [src]="user.avatar || '/assets/default-avatar.png'" 
-             [alt]="user.name" 
-             class="user-avatar">
-        <span class="user-name">{{ user.name }}</span>
-      </div>
-      
-      <div class="user-dropdown">
-        <button class="dropdown-item">Profile</button>
-        <button class="dropdown-item">Settings</button>
-        <button class="dropdown-item" (click)="onLogout()">Logout</button>
-      </div>
-    </div>
+  <div class="header-right">
+    <button class="icon-btn" title="Settings">
+      <span class="icon">⚙️</span>
+    </button>
+    <button class="icon-btn" title="Notifications">
+      <span class="icon">🔔</span>
+    </button>
+    <button class="icon-btn" title="Search">
+      <span class="icon">🔍</span>
+    </button>
   </div>
 </header>

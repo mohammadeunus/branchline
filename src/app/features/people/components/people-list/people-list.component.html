@@ -1,119 +1,106 @@
 <div class="people-container">
-  <div class="page-header">
-    <div class="header-content">
+  <div class="main-card">
+    <div class="page-header">
       <h1 class="page-title">People</h1>
-      <div class="header-actions">
-        <button class="btn btn-secondary" (click)="exportData()">
-          📤 Export
-        </button>
-        <button class="btn btn-primary" (click)="addPerson()">
-          ➕ Add Person
-        </button>
-      </div>
-    </div>
-
-    <!-- Stats Cards -->
-    <div class="stats-cards">
-      <div class="stat-card">
-        <div class="stat-label">Interviews</div>
-        <div class="stat-value">25%</div>
-        <div class="stat-bar">
-          <div class="stat-progress" style="width: 25%; background-color: #374151;"></div>
+      
+      <!-- Progress/Status Bars -->
+      <div class="status-bars">
+        <div class="status-item">
+          <span class="status-label">Interviews</span>
+          <div class="status-bar">
+            <div class="status-progress" style="width: 25%; background-color: #374151;"></div>
+          </div>
+          <span class="status-value">25%</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Hired</span>
+          <div class="status-bar">
+            <div class="status-progress" style="width: 51%; background-color: #fbbf24;"></div>
+          </div>
+          <span class="status-value">51%</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Project time</span>
+          <div class="status-bar striped">
+            <div class="status-progress" style="width: 10%; background-color: #9ca3af;"></div>
+          </div>
+          <span class="status-value">10%</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Output</span>
+          <div class="status-bar striped">
+            <div class="status-progress" style="width: 14%; background-color: #9ca3af;"></div>
+          </div>
+          <span class="status-value">14%</span>
         </div>
       </div>
-      <div class="stat-card">
-        <div class="stat-label">Hired</div>
-        <div class="stat-value">51%</div>
-        <div class="stat-bar">
-          <div class="stat-progress" style="width: 51%; background-color: #fbbf24;"></div>
+    </div>
+
+    <!-- Filter and Action Bar -->
+    <div class="filter-bar">
+      <div class="filter-left">
+        <select class="filter-dropdown">
+          <option>Columns</option>
+        </select>
+        <select class="filter-dropdown">
+          <option>Department</option>
+        </select>
+        <select class="filter-dropdown">
+          <option>Site</option>
+        </select>
+        <select class="filter-dropdown">
+          <option>Lifecycle</option>
+        </select>
+        <select class="filter-dropdown">
+          <option>Status</option>
+        </select>
+        <select class="filter-dropdown">
+          <option>Entity</option>
+        </select>
+      </div>
+      
+      <div class="filter-center">
+        <div class="search-container">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search" class="search-input">
         </div>
       </div>
-      <div class="stat-card">
-        <div class="stat-label">Project time</div>
-        <div class="stat-value">10%</div>
+      
+      <div class="filter-right">
+        <button class="action-btn">
+          <span>+</span>
+        </button>
+        <button class="action-btn">
+          <span>=</span>
+        </button>
+        <button class="action-btn">
+          <span>📤</span>
+          <span>Export</span>
+        </button>
       </div>
-      <div class="stat-card">
-        <div class="stat-label">Output</div>
-        <div class="stat-value">14%</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Filters -->
-  <div class="filters-section">
-    <div class="search-container">
-      <input 
-        type="text" 
-        placeholder="Search..." 
-        class="search-input"
-        [(ngModel)]="searchTerm">
-      <span class="search-icon">🔍</span>
-    </div>
-
-    <div class="filter-controls">
-      <select [(ngModel)]="selectedDepartment" class="filter-select">
-        <option value="">Department</option>
-        <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
-      </select>
-
-      <select [(ngModel)]="selectedSite" class="filter-select">
-        <option value="">Site</option>
-        <option *ngFor="let site of sites" [value]="site">{{ site }}</option>
-      </select>
-
-      <select [(ngModel)]="selectedLifecycle" class="filter-select">
-        <option value="">Lifecycle</option>
-        <option *ngFor="let lifecycle of lifecycles" [value]="lifecycle">{{ lifecycle }}</option>
-      </select>
-
-      <select [(ngModel)]="selectedStatus" class="filter-select">
-        <option value="">Status</option>
-        <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
-      </select>
-
-      <select class="filter-select">
-        <option>Entity</option>
-      </select>
-    </div>
-
-    <div class="view-controls">
-      <div class="directory-control">
-        <label>Directory</label>
-        <select class="control-select">
-          <option>All</option>
+      
+      <div class="filter-extra">
+        <select class="filter-dropdown">
+          <option>Directory</option>
         </select>
-      </div>
-
-      <div class="org-chart-control">
-        <label>Org Chart</label>
-        <select class="control-select">
-          <option>View</option>
+        <select class="filter-dropdown">
+          <option>Org Chat</option>
         </select>
-      </div>
-
-      <div class="insights-control">
-        <label>Insights</label>
-        <select class="control-select">
-          <option>View</option>
+        <select class="filter-dropdown">
+          <option>Insights</option>
         </select>
       </div>
     </div>
-  </div>
 
-  <!-- Data Table -->
-  <app-data-table
-    [columns]="columns"
-    [data]="filteredPeople"
-    [actions]="actions"
-    [loading]="loading"
-    [selectable]="true"
-    (sort)="onSort($event)"
-    (selectionChange)="onSelectionChange($event)">
-  </app-data-table>
-
-  <!-- Selection Info -->
-  <div *ngIf="selectedPeople.length > 0" class="selection-info">
-    <span>{{ selectedPeople.length }} person(s) selected</span>
-    <button class="btn btn-secondary btn-sm">Bulk Actions</button>
+    <!-- Data Table -->
+    <app-data-table
+      [columns]="columns"
+      [data]="filteredPeople"
+      [actions]="actions"
+      [loading]="loading"
+      [selectable]="true"
+      (sort)="onSort($event)"
+      (selectionChange)="onSelectionChange($event)">
+    </app-data-table>
   </div>
 </div>
