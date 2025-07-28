@@ -4,9 +4,6 @@
   align-items: center;
   padding: 0 24px;
   height: 64px;
-  background: white;
-  border-bottom: 1px solid #e5e7eb;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .header-left {
@@ -29,7 +26,7 @@
 .header-center {
   flex: 1;
   display: flex;
-  justify-content: center;
+  justify-content: end;
   
   .main-nav {
     display: flex;
