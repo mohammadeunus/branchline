@@ -48,72 +48,72 @@
   </div>
 
   <!-- Filter and Action Bar -->
-  <div class="cutout-card"></div>
-  
-  <div class="filter-bar">
-    <div class="filter-left">
-      <select class="filter-dropdown">
-        <option>Columns</option>
-      </select>
-      <select class="filter-dropdown">
-        <option>Department</option>
-      </select>
-      <select class="filter-dropdown">
-        <option>Site</option>
-      </select>
-      <select class="filter-dropdown">
-        <option>Lifecycle</option>
-      </select>
-      <select class="filter-dropdown">
-        <option>Status</option>
-      </select>
-      <select class="filter-dropdown">
-        <option>Entity</option>
-      </select>
-    </div>
+  <div class="cutout-card">
+    <div class="filter-bar">
+      <div class="filter-left">
+        <select class="filter-dropdown">
+          <option>Columns</option>
+        </select>
+        <select class="filter-dropdown">
+          <option>Department</option>
+        </select>
+        <select class="filter-dropdown">
+          <option>Site</option>
+        </select>
+        <select class="filter-dropdown">
+          <option>Lifecycle</option>
+        </select>
+        <select class="filter-dropdown">
+          <option>Status</option>
+        </select>
+        <select class="filter-dropdown">
+          <option>Entity</option>
+        </select>
+      </div>
 
-    <div class="filter-center">
-      <div class="search-container">
-        <span class="search-icon">🔍</span>
-        <input type="text" placeholder="Search" class="search-input" />
+      <div class="filter-center">
+        <div class="search-container">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search" class="search-input" />
+        </div>
+      </div>
+
+      <div class="filter-right">
+        <button class="action-btn">
+          <span>+</span>
+        </button>
+        <button class="action-btn">
+          <span>=</span>
+        </button>
+        <button class="action-btn">
+          <span>📤</span>
+          <span>Export</span>
+        </button>
+      </div>
+
+      <div class="filter-extra">
+        <select class="filter-dropdown">
+          <option>Directory</option>
+        </select>
+        <select class="filter-dropdown">
+          <option>Org Chat</option>
+        </select>
+        <select class="filter-dropdown">
+          <option>Insights</option>
+        </select>
       </div>
     </div>
 
-    <div class="filter-right">
-      <button class="action-btn">
-        <span>+</span>
-      </button>
-      <button class="action-btn">
-        <span>=</span>
-      </button>
-      <button class="action-btn">
-        <span>📤</span>
-        <span>Export</span>
-      </button>
-    </div>
-
-    <div class="filter-extra">
-      <select class="filter-dropdown">
-        <option>Directory</option>
-      </select>
-      <select class="filter-dropdown">
-        <option>Org Chat</option>
-      </select>
-      <select class="filter-dropdown">
-        <option>Insights</option>
-      </select>
-    </div>
+    <!-- Data Table -->
+    <app-data-table
+      [columns]="columns"
+      [data]="filteredPeople"
+      [actions]="actions"
+      [loading]="loading"
+      [selectable]="true"
+      (sort)="onSort($event)"
+      (selectionChange)="onSelectionChange($event)"
+    >
+    </app-data-table>
   </div>
-
-  <!-- Data Table -->
-  <app-data-table
-    [columns]="columns"
-    [data]="filteredPeople"
-    [actions]="actions"
-    [loading]="loading"
-    [selectable]="true"
-    (sort)="onSort($event)"
-    (selectionChange)="onSelectionChange($event)"
-  >
-  </app-data-table>
 </div>
