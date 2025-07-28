@@ -1,0 +1,54 @@
+<div class="person-detail-container" *ngIf="!loading && person">
+  <div class="detail-header">
+    <button class="back-btn" (click)="goBack()">
+      ← Back to People
+    </button>
+    <button class="edit-btn" (click)="editPerson()">
+      ✏️ Edit
+    </button>
+  </div>
+
+  <div class="person-card">
+    <div class="person-avatar">
+      <img [src]="person.avatar" [alt]="person.name" class="avatar-image">
+    </div>
+    
+    <div class="person-info">
+      <h1 class="person-name">{{ person.name }}</h1>
+      <p class="person-title">{{ person.jobTitle }}</p>
+      
+      <div class="person-details">
+        <div class="detail-item">
+          <label>Department:</label>
+          <span>{{ person.department }}</span>
+        </div>
+        <div class="detail-item">
+          <label>Site:</label>
+          <span>{{ person.site }}</span>
+        </div>
+        <div class="detail-item">
+          <label>Email:</label>
+          <span>{{ person.email }}</span>
+        </div>
+        <div class="detail-item">
+          <label>Salary:</label>
+          <span>{{ person.salary | currency }}</span>
+        </div>
+        <div class="detail-item">
+          <label>Start Date:</label>
+          <span>{{ person.startDate | date:'MMM d, yyyy' }}</span>
+        </div>
+        <div class="detail-item">
+          <label>Status:</label>
+          <span class="badge" [ngClass]="'badge-' + person.status.toLowerCase()">
+            {{ person.status }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="loading-container" *ngIf="loading">
+  <app-loading-spinner size="large"></app-loading-spinner>
+</div>

@@ -1,0 +1,136 @@
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 280px;
+  background: white;
+  border-right: 1px solid #e2e8f0;
+  transition: width 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+
+  &.collapsed {
+    width: 80px;
+  }
+}
+
+.sidebar-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid #e2e8f0;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1e293b;
+    }
+  }
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 24px 0;
+
+  .nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-item {
+    margin-bottom: 4px;
+
+    &.active .nav-link {
+      background-color: #f1f5f9;
+      color: #3b82f6;
+      border-right: 3px solid #3b82f6;
+    }
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 24px;
+    color: #64748b;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: #f8fafc;
+      color: #1e293b;
+    }
+
+    .nav-icon {
+      font-size: 20px;
+      width: 24px;
+      text-align: center;
+    }
+
+    .nav-label {
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+}
+
+.sidebar-footer {
+  padding: 24px;
+  border-top: 1px solid #e2e8f0;
+
+  .settings-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    color: #64748b;
+    cursor: pointer;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #1e293b;
+    }
+
+    .settings-icon {
+      font-size: 20px;
+      width: 24px;
+      text-align: center;
+    }
+
+    .settings-label {
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    
+    &.collapsed {
+      transform: translateX(0);
+      width: 80px;
+    }
+  }
+}

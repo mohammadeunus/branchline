@@ -1,0 +1,150 @@
+.person-detail-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+
+  .back-btn {
+    background: none;
+    border: none;
+    color: #3b82f6;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 8px 0;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .edit-btn {
+    padding: 8px 16px;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+
+    &:hover {
+      background-color: #2563eb;
+    }
+  }
+}
+
+.person-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 32px;
+  display: flex;
+  gap: 32px;
+
+  .person-avatar {
+    flex-shrink: 0;
+
+    .avatar-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #f1f5f9;
+    }
+  }
+
+  .person-info {
+    flex: 1;
+
+    .person-name {
+      font-size: 28px;
+      font-weight: 600;
+      color: #1e293b;
+      margin: 0 0 8px 0;
+    }
+
+    .person-title {
+      font-size: 18px;
+      color: #64748b;
+      margin: 0 0 24px 0;
+    }
+
+    .person-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+
+      .detail-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        label {
+          font-size: 12px;
+          font-weight: 600;
+          color: #64748b;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+
+        span {
+          font-size: 14px;
+          color: #1e293b;
+        }
+
+        .badge {
+          padding: 4px 8px;
+          border-radius: 12px;
+          font-size: 12px;
+          font-weight: 500;
+          text-transform: capitalize;
+          display: inline-block;
+          width: fit-content;
+
+          &.badge-hired {
+            background-color: #dcfce7;
+            color: #166534;
+          }
+
+          &.badge-employed {
+            background-color: #dbeafe;
+            color: #1e40af;
+          }
+
+          &.badge-invited {
+            background-color: #fef3c7;
+            color: #92400e;
+          }
+
+          &.badge-absent {
+            background-color: #fee2e2;
+            color: #991b1b;
+          }
+        }
+      }
+    }
+  }
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+@media (max-width: 768px) {
+  .person-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px;
+
+    .person-details {
+      grid-template-columns: 1fr;
+    }
+  }
+}

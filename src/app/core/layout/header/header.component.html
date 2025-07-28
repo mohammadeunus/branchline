@@ -1,0 +1,36 @@
+<header class="header">
+  <div class="header-left">
+    <button class="menu-toggle" (click)="onToggleSidebar()">
+      <span class="hamburger"></span>
+    </button>
+    
+    <div class="search-container">
+      <input type="text" placeholder="Search..." class="search-input">
+      <span class="search-icon">🔍</span>
+    </div>
+  </div>
+
+  <div class="header-right">
+    <div class="notifications">
+      <button class="notification-btn">
+        <span class="notification-icon">🔔</span>
+        <span class="notification-badge">3</span>
+      </button>
+    </div>
+
+    <div class="user-menu" *ngIf="currentUser$ | async as user">
+      <div class="user-info">
+        <img [src]="user.avatar || '/assets/default-avatar.png'" 
+             [alt]="user.name" 
+             class="user-avatar">
+        <span class="user-name">{{ user.name }}</span>
+      </div>
+      
+      <div class="user-dropdown">
+        <button class="dropdown-item">Profile</button>
+        <button class="dropdown-item">Settings</button>
+        <button class="dropdown-item" (click)="onLogout()">Logout</button>
+      </div>
+    </div>
+  </div>
+</header>

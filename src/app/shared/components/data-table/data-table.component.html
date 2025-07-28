@@ -1,0 +1,88 @@
+<div class="data-table-container">
+  <div class="table-wrapper">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th *ngIf="selectable" class="checkbox-column">
+            <input 
+              type="checkbox" 
+              [checked]="isAllSelected()"
+              [indeterminate]="isIndeterminate()"
+              (change)="onSelectAll($event)">
+          </th>
+          <th *ngFor="let column of columns" 
+              [style.width]="column.width"
+              [class.sortable]="column.sortable"
+              (click)="onSort(column)">
+            <div class="header-content">
+              <span>{{ column.label }}</span>
+              <span *ngIf="column.sortable && sortColumn === column.key" 
+                    class="sort-indicator">
+                {{ sortDirection === 'asc' ? '↑' : '↓' }}
+              </span>
+            </div>
+          </th>
+          <th *ngIf="actions.length > 0" class="actions-column">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="loading" class="loading-row">
+          <td [attr.colspan]="columns.length + (selectable ? 1 : 0) + (actions.length > 0 ? 1 : 0)">
+            <app-loading-spinner></app-loading-spinner>
+          </td>
+        </tr>
+        <tr *ngFor="let item of data" 
+            class="data-row"
+            [class.selected]="isSelected(item)">
+          <td *ngIf="selectable" class="checkbox-column">
+            <input 
+              type="checkbox" 
+              [checked]="isSelected(item)"
+              (change)="onSelectItem(item, $event)">
+          </td>
+          <td *ngFor="let column of columns" [ngClass]="'cell-' + column.type">
+            <ng-container [ngSwitch]="column.type">
+              <span *ngSwitchCase="'badge'" 
+                    class="badge"
+                    [ngClass]="'badge-' + getCellValue(item, column)?.toLowerCase()">
+                {{ getCellValue(item, column) }}
+              </span>
+              <img *ngSwitchCase="'avatar'" 
+                   [src]="getCellValue(item, column)" 
+                   [alt]="item.name"
+                   class="avatar">
+              <span *ngSwitchCase="'date'">
+                {{ getCellValue(item, column) | date:'MMM d, yyyy' }}
+              </span>
+              <span *ngSwitchCase="'number'">
+                {{ getCellValue(item, column) | currency }}
+              </span>
+              <span *ngSwitchDefault>
+                {{ getCellValue(item, column) }}
+              </span>
+            </ng-container>
+          </td>
+          <td *ngIf="actions.length > 0" class="actions-column">
+            <div class="action-buttons">
+              <button *ngFor="let action of actions"
+                      *ngIf="isActionVisible(action, item)"
+                      class="action-btn"
+                      (click)="executeAction(action, item)"
+                      [title]="action.label">
+                <span *ngIf="action.icon">{{ action.icon }}</span>
+                <span *ngIf="!action.icon">{{ action.label }}</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr *ngIf="!loading && data.length === 0" class="empty-row">
+          <td [attr.colspan]="columns.length + (selectable ? 1 : 0) + (actions.length > 0 ? 1 : 0)">
+            <div class="empty-state">
+              <p>No data available</p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

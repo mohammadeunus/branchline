@@ -1,0 +1,28 @@
+<aside class="sidebar" [class.collapsed]="collapsed">
+  <div class="sidebar-header">
+    <div class="logo">
+      <span class="logo-icon">C</span>
+      <span class="logo-text" *ngIf="!collapsed">Crextio</span>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <ul class="nav-list">
+      <li *ngFor="let item of menuItems" 
+          class="nav-item"
+          [class.active]="isActive(item.route)">
+        <a (click)="navigateTo(item.route)" class="nav-link">
+          <span class="nav-icon">{{ item.icon }}</span>
+          <span class="nav-label" *ngIf="!collapsed">{{ item.label }}</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="settings-item">
+      <span class="settings-icon">⚙️</span>
+      <span class="settings-label" *ngIf="!collapsed">Settings</span>
+    </div>
+  </div>
+</aside>
